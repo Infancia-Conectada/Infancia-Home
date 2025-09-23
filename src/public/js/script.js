@@ -1,325 +1,316 @@
-// JavaScript para funcionalidades da landing page
-
+// JavaScript Unificado - Infância Conectada
 document.addEventListener('DOMContentLoaded', function() {
-    // Mobile Navigation Toggle
-    const navToggle = document.querySelector('.nav-toggle');
-    const navMenu = document.querySelector('.nav-menu');
-    
-    if (navToggle && navMenu) {
-        navToggle.addEventListener('click', function() {
-            navMenu.classList.toggle('active');
-            
-            // Animação do hambúrguer
-            const bars = navToggle.querySelectorAll('.bar');
-            bars.forEach((bar, index) => {
-                if (navMenu.classList.contains('active')) {
-                    if (index === 0) bar.style.transform = 'rotate(45deg) translate(5px, 5px)';
-                    if (index === 1) bar.style.opacity = '0';
-                    if (index === 2) bar.style.transform = 'rotate(-45deg) translate(7px, -6px)';
-                } else {
-                    bar.style.transform = 'none';
-                    bar.style.opacity = '1';
+    /* =========================================================
+       HEADER
+    ========================================================= */
+    const header = document.querySelector('.header');
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const mobileNav = document.getElementById('mobileNav');
+    const userMenu = document.getElementById('userMenu');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+    let isMobileMenuOpen = false;
+    let isUserMenuOpen = false;
+
+    function initHeader() {
+        setupEventListeners();
+        setupScrollEffects();
+        setupActiveNavigation();
+        setupAccessibility();
+    }
+
+    function setupEventListeners() {
+        if (mobileMenuToggle) {
+            mobileMenuToggle.addEventListener('click', toggleMobileMenu);
+        }
+        mobileNavLinks.forEach(link => link.addEventListener('click', closeMobileMenu));
+        if (userMenu) userMenu.addEventListener('click', toggleUserMenu);
+        document.addEventListener('click', handleOutsideClick);
+        document.addEventListener('keydown', handleEscapeKey);
+        window.addEventListener('resize', handleResize);
+        setupSmoothScroll();
+    }
+
+    function toggleMobileMenu() {
+        isMobileMenuOpen = !isMobileMenuOpen;
+        mobileMenuToggle.classList.toggle('active', isMobileMenuOpen);
+        mobileNav.classList.toggle('active', isMobileMenuOpen);
+        mobileMenuToggle.setAttribute('aria-expanded', isMobileMenuOpen);
+        document.body.style.overflow = isMobileMenuOpen ? 'hidden' : '';
+        if (isMobileMenuOpen) animateMenuItems();
+    }
+
+    function closeMobileMenu() {
+        if (isMobileMenuOpen) {
+            isMobileMenuOpen = false;
+            mobileMenuToggle.classList.remove('active');
+            mobileNav.classList.remove('active');
+            mobileMenuToggle.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
+        }
+    }
+
+    function toggleUserMenu(e) {
+        e.stopPropagation();
+        isUserMenuOpen = !isUserMenuOpen;
+        userMenu.classList.toggle('active', isUserMenuOpen);
+    }
+
+    function closeUserMenu() {
+        if (isUserMenuOpen) {
+            isUserMenuOpen = false;
+            userMenu.classList.remove('active');
+        }
+    }
+
+    function handleOutsideClick(e) {
+        if (isMobileMenuOpen && !mobileNav.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+            closeMobileMenu();
+        }
+        if (isUserMenuOpen && userMenu && !userMenu.contains(e.target)) {
+            closeUserMenu();
+        }
+    }
+
+    function handleEscapeKey(e) {
+        if (e.key === 'Escape') {
+            closeMobileMenu();
+            closeUserMenu();
+        }
+    }
+
+    function handleResize() {
+        if (window.innerWidth > 1024) closeMobileMenu();
+    }
+
+    function setupScrollEffects() {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    }
+
+    function setupActiveNavigation() {
+        const currentPath = window.location.hash || '#home';
+        navLinks.forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === currentPath);
+            link.addEventListener('click', function() {
+                navLinks.forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                mobileNavLinks.forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    }
+
+    function setupSmoothScroll() {
+        [...navLinks, ...mobileNavLinks].forEach(link => {
+            link.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        const headerHeight = header.offsetHeight;
+                        window.scrollTo({
+                            top: target.offsetTop - headerHeight - 20,
+                            behavior: 'smooth'
+                        });
+                    }
+                    closeMobileMenu();
                 }
             });
         });
     }
 
-    // Fechar menu mobile ao clicar em um link
-    const navLinks = document.querySelectorAll('.nav-link');
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            if (navMenu && navMenu.classList.contains('active')) {
-                navMenu.classList.remove('active');
-                const bars = navToggle.querySelectorAll('.bar');
-                bars.forEach(bar => {
-                    bar.style.transform = 'none';
-                    bar.style.opacity = '1';
-                });
-            }
-        });
-    });
-
-    // Smooth scrolling para links internos
-    const internalLinks = document.querySelectorAll('a[href^="#"]');
-    internalLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
-            
-            if (targetSection) {
-                const headerHeight = document.querySelector('.header').offsetHeight;
-                const targetPosition = targetSection.offsetTop - headerHeight;
-                
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
-
-    // Header background change on scroll
-    const header = document.querySelector('.header');
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 100) {
-            header.style.background = 'rgba(255, 255, 255, 0.98)';
-            header.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.15)';
-        } else {
-            header.style.background = 'rgba(255, 255, 255, 0.95)';
-            header.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
-        }
-    });
-
-    // Formulário de contato
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-        contactForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const formData = new FormData(this);
-            const data = {
-                name: formData.get('name'),
-                email: formData.get('email'),
-                message: formData.get('message')
-            };
-
-            // Validação básica
-            if (!data.name.trim() || !data.email.trim() || !data.message.trim()) {
-                showNotification('Por favor, preencha todos os campos.', 'error');
-                return;
-            }
-
-            if (!isValidEmail(data.email)) {
-                showNotification('Por favor, insira um e-mail válido.', 'error');
-                return;
-            }
-
-            // Simular envio (em produção, enviar para o servidor)
-            const submitButton = this.querySelector('button[type="submit"]');
-            const originalText = submitButton.textContent;
-            submitButton.textContent = 'Enviando...';
-            submitButton.disabled = true;
-
-            try {
-                // Simular delay de envio
-                await new Promise(resolve => setTimeout(resolve, 2000));
-                
-                // Simular sucesso
-                showNotification('Mensagem enviada com sucesso! Entraremos em contato em breve.', 'success');
-                this.reset();
-            } catch (error) {
-                showNotification('Erro ao enviar mensagem. Tente novamente.', 'error');
-            } finally {
-                submitButton.textContent = originalText;
-                submitButton.disabled = false;
-            }
+    function animateMenuItems() {
+        const items = mobileNav.querySelectorAll('.mobile-nav-link, .mobile-login-btn');
+        items.forEach((item, i) => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateX(-20px)';
+            setTimeout(() => {
+                item.style.transition = 'all 0.3s ease';
+                item.style.opacity = '1';
+                item.style.transform = 'translateX(0)';
+            }, i * 50);
         });
     }
 
-    // Animações de entrada quando elementos ficam visíveis
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
+    function setupAccessibility() {
+        navLinks.forEach(link => {
+            link.addEventListener('keydown', e => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    link.click();
+                }
+            });
+        });
+    }
+
+    // Simulação de login/logout
+    window.simulateLogin = function(type) {
+        document.querySelector('.login-buttons')?.classList.add('hidden');
+        userMenu?.classList.remove('hidden');
+        showNotification(`Login realizado como ${type}`, 'success');
     };
 
-    const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('fade-in-up');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
+    window.logout = function() {
+        document.querySelector('.login-buttons')?.classList.remove('hidden');
+        userMenu?.classList.add('hidden');
+        closeUserMenu();
+        showNotification('Logout realizado com sucesso', 'info');
+    };
 
-    // Observar elementos para animação
-    const animatedElements = document.querySelectorAll('.service-card, .testimonial-card, .stat-item');
-    animatedElements.forEach(el => observer.observe(el));
-
-    // Contador animado para estatísticas
-    function animateCounters() {
-        const counters = document.querySelectorAll('.stat-number');
-        counters.forEach(counter => {
-            const target = parseInt(counter.textContent.replace(/[^\d]/g, ''));
-            const increment = target / 50;
-            let current = 0;
-            
-            const timer = setInterval(() => {
-                current += increment;
-                if (current >= target) {
-                    counter.textContent = counter.textContent.replace(/\d+/, target);
-                    clearInterval(timer);
-                } else {
-                    counter.textContent = counter.textContent.replace(/\d+/, Math.floor(current));
-                }
-            }, 40);
-        });
-    }
-
-    // Observar seção de estatísticas para iniciar animação
-    const statsSection = document.querySelector('.hero-stats');
-    if (statsSection) {
-        const statsObserver = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    animateCounters();
-                    statsObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
-        
-        statsObserver.observe(statsSection);
-    }
-
-    // Efeito parallax suave no hero
-    const hero = document.querySelector('.hero');
-    if (hero) {
-        window.addEventListener('scroll', function() {
-            const scrolled = window.pageYOffset;
-            const parallax = scrolled * 0.5;
-            hero.style.transform = `translateY(${parallax}px)`;
-        });
-    }
-
-    // Função para mostrar notificações
     function showNotification(message, type = 'info') {
-        // Remover notificação existente
-        const existingNotification = document.querySelector('.notification');
-        if (existingNotification) {
-            existingNotification.remove();
-        }
-
-        // Criar nova notificação
         const notification = document.createElement('div');
         notification.className = `notification notification-${type}`;
-        notification.innerHTML = `
-            <div class="notification-content">
-                <span class="notification-icon">${getNotificationIcon(type)}</span>
-                <span class="notification-message">${message}</span>
-                <button class="notification-close">&times;</button>
-            </div>
-        `;
-
-        // Estilos da notificação
-        notification.style.cssText = `
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 10000;
-            max-width: 400px;
-            padding: 16px;
-            border-radius: 8px;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            background: ${type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : '#3b82f6'};
-            color: white;
-            transform: translateX(100%);
-            transition: transform 0.3s ease;
-        `;
-
-        notification.querySelector('.notification-content').style.cssText = `
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        `;
-
-        notification.querySelector('.notification-close').style.cssText = `
-            background: none;
-            border: none;
-            color: white;
-            font-size: 20px;
-            cursor: pointer;
-            margin-left: auto;
-        `;
-
+        notification.textContent = message;
+        Object.assign(notification.style, {
+            position: 'fixed',
+            top: '100px',
+            right: '20px',
+            padding: '12px 20px',
+            background: 'rgba(15, 23, 42, 0.95)',
+            backdropFilter: 'blur(20px)',
+            border: `1px solid ${type === 'success' ? '#10B981' : type === 'error' ? '#EF4444' : '#3B82F6'}`,
+            borderRadius: '12px',
+            color: '#F1F5F9',
+            fontWeight: '500',
+            fontSize: '14px',
+            zIndex: '9999',
+            opacity: '0',
+            transform: 'translateX(100%)',
+            transition: 'all 0.3s ease'
+        });
         document.body.appendChild(notification);
-
-        // Animar entrada
-        setTimeout(() => {
+        requestAnimationFrame(() => {
+            notification.style.opacity = '1';
             notification.style.transform = 'translateX(0)';
-        }, 100);
-
-        // Fechar ao clicar no X
-        notification.querySelector('.notification-close').addEventListener('click', () => {
-            closeNotification(notification);
         });
-
-        // Auto fechar após 5 segundos
         setTimeout(() => {
-            if (document.body.contains(notification)) {
-                closeNotification(notification);
-            }
-        }, 5000);
+            notification.style.opacity = '0';
+            notification.style.transform = 'translateX(100%)';
+            setTimeout(() => notification.remove(), 300);
+        }, 3000);
     }
 
-    function closeNotification(notification) {
-        notification.style.transform = 'translateX(100%)';
-        setTimeout(() => {
-            if (document.body.contains(notification)) {
-                notification.remove();
-            }
-        }, 300);
+    initHeader();
+
+    /* =========================================================
+       BANNER CAROUSEL
+    ========================================================= */
+    const bannerCarousel = document.querySelector('.banner-carousel');
+    const slides = document.querySelectorAll('.banner-slide');
+    const indicators = document.querySelectorAll('.indicator');
+    let currentSlide = 0, isTransitioning = false, autoPlayInterval;
+    const autoPlayDelay = 5000, transitionDuration = 1000;
+
+    function initCarousel() {
+        if (!slides.length || !indicators.length) return;
+        setupCarouselEvents();
+        startAutoPlay();
+        updateAriaLabels();
     }
 
-    function getNotificationIcon(type) {
-        switch (type) {
-            case 'success': return '✅';
-            case 'error': return '❌';
-            default: return 'ℹ️';
+    function setupCarouselEvents() {
+        indicators.forEach((ind, i) => ind.addEventListener('click', () => goToSlide(i)));
+        if (bannerCarousel) {
+            bannerCarousel.addEventListener('mouseenter', pauseAutoPlay);
+            bannerCarousel.addEventListener('mouseleave', startAutoPlay);
         }
+        document.addEventListener('keydown', handleKeyNavigation);
+        document.addEventListener('visibilitychange', handleVisibilityChange);
+        window.addEventListener('resize', handleResize);
+        setupTouchSupport();
     }
 
-    // Validação de email
-    function isValidEmail(email) {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
+    function goToSlide(index) {
+        if (isTransitioning || index === currentSlide) return;
+        slides[currentSlide].classList.remove('active');
+        indicators[currentSlide].classList.remove('active');
+        currentSlide = index;
+        slides[currentSlide].classList.add('active');
+        indicators[currentSlide].classList.add('active');
+        updateAriaLabels();
+        isTransitioning = true;
+        setTimeout(() => { isTransitioning = false; }, transitionDuration);
+        resetAutoPlay();
     }
 
-    // Efeito de typing no título principal
-    function typeWriter(element, text, speed = 50) {
-        let i = 0;
-        element.textContent = '';
-        
-        function type() {
-            if (i < text.length) {
-                element.textContent += text.charAt(i);
-                i++;
-                setTimeout(type, speed);
-            }
-        }
-        
-        type();
+    function nextSlide() { goToSlide((currentSlide + 1) % slides.length); }
+    function prevSlide() { goToSlide((currentSlide - 1 + slides.length) % slides.length); }
+
+    function startAutoPlay() {
+        clearInterval(autoPlayInterval);
+        autoPlayInterval = setInterval(() => {
+            if (!isTransitioning && document.visibilityState === 'visible') nextSlide();
+        }, autoPlayDelay);
     }
 
-    // Aplicar efeito de typing ao título do hero (opcional)
-    const heroTitle = document.querySelector('.hero-title');
-    if (heroTitle) {
-        const originalText = heroTitle.textContent;
-        // Comentado para não interferir com o carregamento inicial
-        // typeWriter(heroTitle, originalText, 100);
+    function pauseAutoPlay() { clearInterval(autoPlayInterval); autoPlayInterval = null; }
+    function resetAutoPlay() { pauseAutoPlay(); startAutoPlay(); }
+
+    function handleKeyNavigation(e) {
+        if (!isBannerInView()) return;
+        if (e.key === 'ArrowLeft') prevSlide();
+        if (e.key === 'ArrowRight') nextSlide();
+        if (e.key === ' ') { autoPlayInterval ? pauseAutoPlay() : startAutoPlay(); }
     }
 
-    // Loading state para botões
-    function addLoadingState(button, loadingText = 'Carregando...') {
-        const originalText = button.textContent;
-        button.textContent = loadingText;
-        button.disabled = true;
-        button.style.opacity = '0.7';
-        
-        return function restore() {
-            button.textContent = originalText;
-            button.disabled = false;
-            button.style.opacity = '1';
-        };
+    function isBannerInView() {
+        if (!bannerCarousel) return false;
+        const rect = bannerCarousel.getBoundingClientRect();
+        return rect.top < window.innerHeight && rect.bottom > 0;
     }
 
-    // Adicionar eventos aos botões de "Saiba Mais"
-    const saibaMaisButtons = document.querySelectorAll('.service-card .btn-outline');
-    saibaMaisButtons.forEach(button => {
-        button.addEventListener('click', function(e) {
-            e.preventDefault();
-            showNotification('Funcionalidade em desenvolvimento. Entre em contato para mais informações!', 'info');
+    function handleVisibilityChange() { document.hidden ? pauseAutoPlay() : startAutoPlay(); }
+
+    function handleResize() {
+        pauseAutoPlay();
+        clearTimeout(window.bannerResizeTimeout);
+        window.bannerResizeTimeout = setTimeout(() => { if (document.visibilityState === 'visible') startAutoPlay(); }, 500);
+    }
+
+    function updateAriaLabels() {
+        indicators.forEach((ind, i) => {
+            const active = i === currentSlide;
+            ind.setAttribute('aria-pressed', active);
+            ind.setAttribute('aria-label', `${active ? 'Slide atual' : 'Ir para slide'} ${i + 1} de ${slides.length}`);
         });
-    });
+    }
 
-    console.log('Landing page carregada com sucesso! 🚀');
+    function setupTouchSupport() {
+        if (!bannerCarousel) return;
+        let startX = 0, startY = 0, scrolling = false;
+        bannerCarousel.addEventListener('touchstart', e => {
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+            scrolling = false;
+            pauseAutoPlay();
+        }, { passive: true });
+        bannerCarousel.addEventListener('touchmove', e => {
+            if (!startX || !startY) return;
+            const dx = startX - e.touches[0].clientX;
+            const dy = startY - e.touches[0].clientY;
+            if (!scrolling) scrolling = Math.abs(dy) > Math.abs(dx);
+            if (!scrolling && Math.abs(dx) > 10) e.preventDefault();
+        }, { passive: false });
+        bannerCarousel.addEventListener('touchend', e => {
+            if (!startX || !startY || scrolling) { startAutoPlay(); return; }
+            const diffX = startX - e.changedTouches[0].clientX;
+            if (Math.abs(diffX) > 50) diffX > 0 ? nextSlide() : prevSlide();
+            else startAutoPlay();
+            startX = startY = 0; scrolling = false;
+        }, { passive: true });
+    }
+
+    initCarousel();
 });
