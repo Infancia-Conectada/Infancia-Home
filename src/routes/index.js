@@ -7,7 +7,11 @@ router.get('/', function(rec, res){
 });
 
 router.get('/login-aluno', function(rec, res){
-    res.render("loginAluno")
+    res.render("login-aluno")
+});
+
+router.get('/aluno-online', function(rec, res){
+    res.render("aluno-online")
 });
 
 
