@@ -1,5 +1,4 @@
-
-   /* =========================================================
+/* =========================================================
    INFÂNCIA CONECTADA - CSS GLOBAL
    Inclui: Header + Main + Footer
    ========================================================= */
@@ -947,6 +946,7 @@ body {
     border: 1px solid var(--glass-border);
     border-radius: 12px;
     transition: var(--transition);
+    margin-top: -15px;
 }
 
 .contact-item:hover {
@@ -1215,4 +1215,3 @@ body {
     }
     .banner-slide { transition: none; }
 }
- 
