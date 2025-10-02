@@ -22,4 +22,8 @@ router.get('/login-instituicao', function(rec, res){
     res.render("login-instituicao")
 });
 
+router.get('/galeria', function(rec, res){
+    res.render("galeria")
+});
+
 module.exports = router;
