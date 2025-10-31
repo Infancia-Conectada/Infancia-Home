@@ -30,4 +30,23 @@ router.get('/politica-privacidade', function(rec, res){
     res.render("privacidade")
 });
 
+//Administrativo//
+router.get('/login-adm', function(rec, res){
+    res.render("adm/login-adm")
+});
+
+router.get('/dashboard-adm', function(rec, res){
+    res.render("adm/dashboard-adm")
+});
+
+
+//Header e Footer//
+router.get('/header', function(rec, res){
+    res.render("h&f/header-infancia")
+});
+
+router.get('/footer', function(rec, res){
+    res.render("h&f/footer-infancia")
+});
+
 module.exports = router;
