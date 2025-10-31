@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Inclusão Digital</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/adm-css/styles-dashboard-adm.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar glass">
+            <div class="logo-section">
+                <div class="logo-icon">
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="40" height="40" rx="8" fill="url(#gradient)"/>
+                        <path d="M20 10L12 18H16V28H24V18H28L20 10Z" fill="white"/>
+                        <defs>
+                            <linearGradient id="gradient" x1="0" y1="0" x2="40" y2="40">
+                                <stop offset="0%" stop-color="#3B82F6"/>
+                                <stop offset="100%" stop-color="#22D3EE"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+                <h2 class="logo-text">Inclusão Digital</h2>
+            </div>
+
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active">
+                    <span class="nav-icon">📊</span>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">🏢</span>
+                    <span>Instituições</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">👥</span>
+                    <span>Usuários</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">📚</span>
+                    <span>Conteúdos</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">📈</span>
+                    <span>Relatórios</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">⚙️</span>
+                    <span>Configurações</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="user-profile glass-light">
+                    <div class="user-avatar">AD</div>
+                    <div class="user-info">
+                        <p class="user-name">Administrador</p>
+                        <p class="user-role">Desenvolvedor</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header glass">
+                <div class="header-left">
+                    <h1 class="page-title">Dashboard Administrativo</h1>
+                    <p class="page-subtitle">Gerencie todas as funcionalidades do projeto</p>
+                </div>
+                <div class="header-right">
+                    <button class="notification-btn glass-light">
+                        <span class="notification-icon">🔔</span>
+                        <span class="notification-badge">3</span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Stats Overview -->
+            <section class="stats-grid">
+                <div class="stat-card glass">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #3B82F6, #22D3EE);">
+                        🏢
+                    </div>
+                    <div class="stat-content">
+                        <p class="stat-label">Instituições Cadastradas</p>
+                        <h3 class="stat-value">24</h3>
+                        <p class="stat-change positive">+3 este mês</p>
+                    </div>
+                </div>
+
+                <div class="stat-card glass">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #22D3EE, #3B82F6);">
+                        👥
+                    </div>
+                    <div class="stat-content">
+                        <p class="stat-label">Jovens Atendidos</p>
+                        <h3 class="stat-value">342</h3>
+                        <p class="stat-change positive">+28 este mês</p>
+                    </div>
+                </div>
+
+                <div class="stat-card glass">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #FACC15, #3B82F6);">
+                        📚
+                    </div>
+                    <div class="stat-content">
+                        <p class="stat-label">Conteúdos Disponíveis</p>
+                        <h3 class="stat-value">156</h3>
+                        <p class="stat-change positive">+12 esta semana</p>
+                    </div>
+                </div>
+
+                <div class="stat-card glass">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #3B82F6, #FACC15);">
+                        ⭐
+                    </div>
+                    <div class="stat-content">
+                        <p class="stat-label">Taxa de Engajamento</p>
+                        <h3 class="stat-value">87%</h3>
+                        <p class="stat-change positive">+5% este mês</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Action Cards -->
+            <section class="action-cards-grid">
+                <!-- Card Principal: Cadastro de Instituição -->
+                <div class="action-card glass highlight-card">
+                    <div class="card-header">
+                        <div class="card-icon primary">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <span class="card-badge">Principal</span>
+                    </div>
+                    <h3 class="card-title">Cadastro de Instituição</h3>
+                    <p class="card-description">Adicione novas casas de acolhimento ao sistema e gerencie as informações institucionais</p>
+                    <button class="card-button primary">
+                        <span>Cadastrar Nova Instituição</span>
+                        <span class="button-arrow">→</span>
+                    </button>
+                    <div class="card-footer">
+                        <span class="footer-info">24 instituições ativas</span>
+                    </div>
+                </div>
+
+                <!-- Cards Fictícios para Edição Futura -->
+                <div class="action-card glass">
+                    <div class="card-header">
+                        <div class="card-icon secondary">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M23 21V19C22.9993 18.1137 22.7044 17.2528 22.1614 16.5523C21.6184 15.8519 20.8581 15.3516 20 15.13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M16 3.13C16.8604 3.35031 17.623 3.85071 18.1676 4.55232C18.7122 5.25392 19.0078 6.11683 19.0078 7.005C19.0078 7.89318 18.7122 8.75608 18.1676 9.45769C17.623 10.1593 16.8604 10.6597 16 10.88" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="card-title">Gerenciar Usuários</h3>
+                    <p class="card-description">Adicione educadores, voluntários e administradores ao sistema</p>
+                    <button class="card-button secondary">
+                        <span>Acessar Gerenciamento</span>
+                        <span class="button-arrow">→</span>
+                    </button>
+                    <div class="card-footer">
+                        <span class="footer-info">48 usuários cadastrados</span>
+                    </div>
+                </div>
+
+                <div class="action-card glass">
+                    <div class="card-header">
+                        <div class="card-icon accent">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2 3H8C9.06087 3 10.0783 3.42143 10.8284 4.17157C11.5786 4.92172 12 5.93913 12 7V21C12 20.2044 11.6839 19.4413 11.1213 18.8787C10.5587 18.3161 9.79565 18 9 18H2V3Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M22 3H16C14.9391 3 13.9217 3.42143 13.1716 4.17157C12.4214 4.92172 12 5.93913 12 7V21C12 20.2044 12.3161 19.4413 12.8787 18.8787C13.4413 18.3161 14.2044 18 15 18H22V3Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="card-title">Biblioteca de Conteúdos</h3>
+                    <p class="card-description">Organize materiais educacionais, cursos e recursos didáticos</p>
+                    <button class="card-button accent">
+                        <span>Ver Biblioteca</span>
+                        <span class="button-arrow">→</span>
+                    </button>
+                    <div class="card-footer">
+                        <span class="footer-info">156 conteúdos disponíveis</span>
+                    </div>
+                </div>
+
+                <div class="action-card glass">
+                    <div class="card-header">
+                        <div class="card-icon primary">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18 20V10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M12 20V4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M6 20V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="card-title">Relatórios e Métricas</h3>
+                    <p class="card-description">Acompanhe o progresso e gere relatórios de impacto social</p>
+                    <button class="card-button primary">
+                        <span>Gerar Relatório</span>
+                        <span class="button-arrow">→</span>
+                    </button>
+                    <div class="card-footer">
+                        <span class="footer-info">Última atualização: hoje</span>
+                    </div>
+                </div>
+
+                <div class="action-card glass">
+                    <div class="card-header">
+                        <div class="card-icon secondary">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M21 15V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <polyline points="17 8 12 3 7 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <line x1="12" y1="3" x2="12" y2="15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="card-title">Upload de Materiais</h3>
+                    <p class="card-description">Faça upload de novos materiais educacionais e recursos</p>
+                    <button class="card-button secondary">
+                        <span>Fazer Upload</span>
+                        <span class="button-arrow">→</span>
+                    </button>
+                    <div class="card-footer">
+                        <span class="footer-info">2.4 GB disponíveis</span>
+                    </div>
+                </div>
+
+                <div class="action-card glass">
+                    <div class="card-header">
+                        <div class="card-icon accent">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <polyline points="12 6 12 12 16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="card-title">Agendamentos</h3>
+                    <p class="card-description">Gerencie visitas, eventos e atividades programadas</p>
+                    <button class="card-button accent">
+                        <span>Ver Agenda</span>
+                        <span class="button-arrow">→</span>
+                    </button>
+                    <div class="card-footer">
+                        <span class="footer-info">8 eventos este mês</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="js/adm-js/script-dashboard-adm.js"></script>
+</body>
+</html>
