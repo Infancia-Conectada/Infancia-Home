@@ -88,7 +88,7 @@ body {
 }
 
 .section-text {
-    font-size: 16px;
+    font-size: 20px;
     line-height: 1.7;
     color: var(--text-secondary);
     margin-bottom: 20px;
@@ -267,7 +267,7 @@ body {
 }
 
 .project-description {
-    font-size: 14px;
+    font-size: 18px;
     line-height: 1.6;
     color: var(--text-secondary);
     margin-bottom: 20px;
@@ -280,7 +280,7 @@ body {
     color: var(--color-primary);
     text-decoration: none;
     font-weight: 500;
-    font-size: 14px;
+    font-size: 20px;
     transition: var(--transition);
 }
 
@@ -296,6 +296,8 @@ body {
 .project-link:hover svg {
     transform: translateX(2px);
 }
+
+
 
 
 /* === DOAÇÕES SECTION === */
@@ -390,42 +392,7 @@ body {
     z-index: 1;
 }
 
-/* =========================================================
-   FOOTER
-   ========================================================= */
 
-.footer {
-    background: var(--bg-primary);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-top: 1px solid var(--glass-border);
-    position: relative;
-    padding: 40px 0 20px;
-}
-
-.footer::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg,
-        rgba(59, 130, 246, 0.05) 0%,
-        rgba(34, 211, 238, 0.02) 100%);
-    pointer-events: none;
-}
-
-.footer-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-    position: relative;
-    z-index: 1;
-}
 
 /* Contato */
 .contact-section {
