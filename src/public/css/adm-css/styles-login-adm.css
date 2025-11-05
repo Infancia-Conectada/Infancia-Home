@@ -157,18 +157,9 @@ body {
     margin-bottom: 32px;
 }
 
-.logo-icon {
-    width: 72px;
-    height: 72px;
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: var(--shadow-md);
+.logo-image {
+    width: 120px;
 }
-
 /* Título */
 .login-title {
     font-size: 28px;
@@ -482,6 +473,7 @@ body {
     align-items: center;
     text-align: center;
     gap: 12px;
+    margin-top: 20px;
 }
 
 .info-icon {

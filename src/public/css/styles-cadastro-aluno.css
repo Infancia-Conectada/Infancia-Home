@@ -68,7 +68,7 @@
         }
 
         .logo {
-            width: 70px;
+            width: 200px;
             height: 70px;
             background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
             border-radius: 18px;
@@ -80,6 +80,7 @@
             font-weight: 700;
             color: white;
             box-shadow: 0 15px 35px rgba(59, 130, 246, 0.25);
+            padding: 50px 120px;
         }
 
         .header-section h1 {
@@ -92,14 +93,6 @@
             background-clip: text;
         }
 
-        .header-section p {
-            color: var(--text-secondary);
-            font-size: 16px;
-            font-weight: 400;
-            line-height: 1.6;
-            max-width: 400px;
-            margin: 0 auto;
-        }
 
         .form-group {
             margin-bottom: 24px;
@@ -298,25 +291,6 @@
             transform: none;
         }
 
-        .info-section {
-            margin-top: 32px;
-            padding: 20px;
-            background: rgba(34, 211, 238, 0.08);
-            border: 1px solid rgba(34, 211, 238, 0.2);
-            border-radius: 16px;
-            text-align: center;
-        }
-
-        .info-section p {
-            color: var(--text-secondary);
-            font-size: 14px;
-            line-height: 1.5;
-        }
-
-        .info-highlight {
-            color: var(--color-secondary);
-            font-weight: 500;
-        }
 
         @media (max-width: 600px) {
             .signup-container {
