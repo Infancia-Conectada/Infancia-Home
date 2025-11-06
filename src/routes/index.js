@@ -22,8 +22,8 @@ router.get('/login-instituicao', function(rec, res){
     res.render("login-instituicao")
 });
 
-router.get('/galeria', function(rec, res){
-    res.render("galeria")
+router.get('/projetos', function(rec, res){
+    res.render("projetos")
 });
 
 router.get('/politica-privacidade', function(rec, res){
