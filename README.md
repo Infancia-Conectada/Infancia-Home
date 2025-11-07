@@ -182,4 +182,4 @@ Para modificar o projeto:
 6. **Rotas**: Adicione novas rotas em `src/routes/`
 
 
-**Desenvolvido com ❤️ por Kaique Covo.**
+**Desenvolvido por Gustavo Niglia, Rodrigo I. Silva, Matheus Henrique Soares e Danilo Correa
