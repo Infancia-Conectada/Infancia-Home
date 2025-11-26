@@ -110,4 +110,109 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     initCarousel();
+
+    /* =========================================================
+       PARTNERS CAROUSEL - SCROLL AUTOMÁTICO
+    ========================================================= */
+    const partnersCarousel = document.querySelector('.partners-carousel');
+    
+    function initPartnersCarousel() {
+        if (!partnersCarousel) return;
+        
+        // Duplicar os cards para criar efeito infinito
+        const partnerCards = Array.from(partnersCarousel.children);
+        partnerCards.forEach(card => {
+            const clone = card.cloneNode(true);
+            partnersCarousel.appendChild(clone);
+        });
+
+        // Pausar/retomar animação com hover
+        partnersCarousel.addEventListener('mouseenter', () => {
+            partnersCarousel.style.animationPlayState = 'paused';
+        });
+
+        partnersCarousel.addEventListener('mouseleave', () => {
+            partnersCarousel.style.animationPlayState = 'running';
+        });
+
+        // Acessibilidade: pausar com foco nos links
+        const allPartnerLinks = partnersCarousel.querySelectorAll('.partner-card');
+        allPartnerLinks.forEach(link => {
+            link.addEventListener('focus', () => {
+                partnersCarousel.style.animationPlayState = 'paused';
+            });
+            
+            link.addEventListener('blur', () => {
+                setTimeout(() => {
+                    if (!partnersCarousel.contains(document.activeElement)) {
+                        partnersCarousel.style.animationPlayState = 'running';
+                    }
+                }, 100);
+            });
+        });
+
+        // Pausar em dispositivos com preferência de movimento reduzido
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            partnersCarousel.style.animation = 'none';
+        }
+
+        // Ajustar velocidade baseada no número de parceiros
+        const partnerCount = partnerCards.length;
+        const baseSpeed = 30; // segundos
+        const adjustedSpeed = Math.max(20, baseSpeed * (partnerCount / 6));
+        partnersCarousel.style.animationDuration = `${adjustedSpeed}s`;
+    }
+
+    initPartnersCarousel();
+
+
+
+    /* =========================================================
+       SCROLL REVEAL ANIMATIONS
+    ========================================================= */
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+
+    // Observar elementos que devem animar ao entrar na viewport
+    const animatedElements = document.querySelectorAll('.project-card, .partner-card, .glass-card');
+    animatedElements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+        observer.observe(el);
+    });
+
+    /* =========================================================
+       PERFORMANCE OPTIMIZATION
+    ========================================================= */
+    // Lazy loading para imagens dos parceiros
+    if ('loading' in HTMLImageElement.prototype) {
+        const images = document.querySelectorAll('.partner-logo img');
+        images.forEach(img => {
+            img.loading = 'lazy';
+        });
+    }
+
+    // Reduzir animações em dispositivos com bateria fraca
+    if ('getBattery' in navigator) {
+        navigator.getBattery().then(battery => {
+            if (battery.level < 0.2 && !battery.charging) {
+                document.body.classList.add('reduced-motion');
+                if (partnersCarousel) {
+                    partnersCarousel.style.animation = 'none';
+                }
+            }
+        });
+    }
 });

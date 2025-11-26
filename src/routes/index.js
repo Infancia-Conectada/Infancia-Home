@@ -23,7 +23,7 @@ router.get('/login-instituicao', function(rec, res){
 });
 
 router.get('/projetos', function(rec, res){
-    res.render("galerias/projetos")
+    res.render("projetos")
 });
 
 router.get('/politica-privacidade', function(rec, res){

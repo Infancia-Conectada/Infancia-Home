@@ -1,45 +1,476 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Inclusão Digital</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles-login-aluno.css">
+    <style>
+        :root {
+            --bg-primary: #0F172A;
+            --color-primary: #3B82F6;
+            --color-secondary: #22D3EE;
+            --color-accent: #FACC15;
+            --text-primary: #F1F5F9;
+            --text-secondary: #94A3B8;
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Fundo animado com efeitos */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, var(--color-primary) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, var(--color-secondary) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, var(--color-accent) 0%, transparent 50%);
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(2deg); }
+        }
+
+        .login-container {
+            position: relative;
+            width: 100%;
+            max-width: 440px;
+            z-index: 1;
+        }
+
+        .login-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 40px 32px;
+            box-shadow: var(--glass-shadow);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .login-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4);
+        }
+
+        .logo-container {
+            margin-bottom: 32px;
+        }
+
+        .logo-badge {
+            width: 100%;
+            max-width: 220px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            border-radius: 16px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 700;
+            color: white;
+            box-shadow: 0 8px 24px rgba(59, 130, 246, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .logo-badge:hover {
+            transform: scale(1.02);
+        }
+
+        .logo-image {
+            width: 140px;
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .header-text {
+            margin-bottom: 36px;
+        }
+
+        .title {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--text-primary), var(--color-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            letter-spacing: 0.3px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 14px 18px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1.5px solid var(--glass-border);
+            border-radius: 12px;
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .form-input::placeholder {
+            color: var(--text-secondary);
+            opacity: 0.7;
+        }
+
+        .form-input:focus {
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-1px);
+        }
+
+        .form-input:hover:not(:focus) {
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .login-button {
+            width: 100%;
+            padding: 16px 24px;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            border: none;
+            border-radius: 12px;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 24px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(59, 130, 246, 0.3);
+        }
+
+        .login-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s;
+        }
+
+        .login-button:hover::before {
+            left: 100%;
+        }
+
+        .login-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(59, 130, 246, 0.4);
+        }
+
+        .login-button:active {
+            transform: translateY(0);
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 24px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 8px 16px;
+            border-radius: 8px;
+        }
+
+        .back-link:hover {
+            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Responsividade Tablet */
+        @media (max-width: 768px) {
+            .login-container {
+                max-width: 400px;
+            }
+
+            .login-card {
+                padding: 36px 28px;
+            }
+
+            .title {
+                font-size: 28px;
+            }
+
+            .subtitle {
+                font-size: 14px;
+            }
+
+            .logo-badge {
+                height: 65px;
+                font-size: 18px;
+            }
+
+            .logo-image {
+                width: 130px;
+            }
+        }
+
+        /* Responsividade Mobile */
+        @media (max-width: 480px) {
+            body {
+                padding: 16px;
+            }
+
+            .login-container {
+                max-width: 100%;
+            }
+            
+            .login-card {
+                padding: 32px 24px;
+                border-radius: 20px;
+            }
+            
+            .logo-badge {
+                max-width: 100%;
+                height: 60px;
+                font-size: 17px;
+                margin-bottom: 16px;
+            }
+
+            .logo-image {
+                width: 110px;
+            }
+
+            .header-text {
+                margin-bottom: 28px;
+            }
+            
+            .title {
+                font-size: 26px;
+            }
+            
+            .subtitle {
+                font-size: 13px;
+            }
+
+            .form-group {
+                margin-bottom: 18px;
+            }
+
+            .form-label {
+                font-size: 13px;
+            }
+
+            .form-input {
+                padding: 13px 16px;
+                font-size: 14px;
+            }
+
+            .login-button {
+                padding: 14px 20px;
+                font-size: 15px;
+                margin-top: 20px;
+            }
+
+            .back-link {
+                font-size: 13px;
+                margin-top: 20px;
+            }
+        }
+
+        /* Responsividade para telas muito pequenas */
+        @media (max-width: 360px) {
+            .login-card {
+                padding: 28px 20px;
+            }
+
+            .logo-badge {
+                font-size: 15px;
+                height: 55px;
+            }
+
+            .title {
+                font-size: 24px;
+            }
+
+            .form-input {
+                padding: 12px 14px;
+            }
+        }
+
+        /* Landscape em dispositivos móveis */
+        @media (max-height: 600px) and (orientation: landscape) {
+            body {
+                padding: 10px;
+            }
+
+            .login-card {
+                padding: 20px;
+            }
+
+            .logo-container {
+                margin-bottom: 16px;
+            }
+
+            .logo-badge {
+                height: 50px;
+                margin-bottom: 12px;
+            }
+
+            .header-text {
+                margin-bottom: 16px;
+            }
+
+            .title {
+                font-size: 22px;
+                margin-bottom: 4px;
+            }
+
+            .subtitle {
+                font-size: 12px;
+            }
+
+            .form-group {
+                margin-bottom: 12px;
+            }
+
+            .login-button {
+                margin-top: 12px;
+                padding: 12px 20px;
+            }
+
+            .back-link {
+                margin-top: 12px;
+            }
+        }
+    </style>
 </head>
-
 <body>
-
-    <div class="login-card">
-        <div class="logo">Infância Conectada</div>
-        <img src="images/logo-infancia.png" alt="Logo Infância Conectada" id="logotipo">
-        <h1 class="title">Bem-vindo!</h1>
-        <p class="subtitle">Entre na sua conta Infância Conectada</p>
-
-        <form id="loginForm">
-            <div class="form-group">
-                <label class="form-label" for="nickname">Nickname</label>
-                <input type="text" id="nickname" name="nickname" class="form-input" placeholder="Digite seu nickname"
-                    >
+    <div class="login-container">
+        <div class="login-card">
+            <div class="logo-container">
+                <div class="logo-badge">Infância Conectada</div>
+                <img src="images/logo-infancia.png" alt="Logo Infância Conectada" class="logo-image">
             </div>
 
-            <div class="form-group">
-                <label class="form-label" for="password">Senha</label>
-                <input type="password" id="password" name="password" class="form-input" placeholder="Digite sua senha"
-                    >
+            <div class="header-text">
+                <h1 class="title">Bem-vindo!</h1>
+                <p class="subtitle">Entre na sua conta Infância Conectada</p>
             </div>
 
-            <button type="submit" class="login-button">Entrar</button>
-            <br><br>
-            <a href="/" style="color: whitesmoke; text-align: center; text-decoration: none;"> <- Voltar</a>
-        </form>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label class="form-label" for="nickname">Nickname</label>
+                    <input type="text" id="nickname" name="nickname" class="form-input" 
+                           placeholder="Digite seu nickname" required>
+                </div>
 
+                <div class="form-group">
+                    <label class="form-label" for="password">Senha</label>
+                    <input type="password" id="password" name="password" class="form-input" 
+                           placeholder="Digite sua senha" required>
+                </div>
+
+                <button type="submit" class="login-button">Entrar</button>
+            </form>
+
+            <a href="/" class="back-link">← Voltar</a>
+        </div>
     </div>
-<div class="login-container">
-        <script src="js/script-login-aluno.js"></script>
-        <div>
 
+    <script>
+        // Adiciona interatividade ao formulário
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const nickname = document.getElementById('nickname').value;
+            const password = document.getElementById('password').value;
+            
+            if (nickname && password) {
+                // Simula o processo de login
+                const button = document.querySelector('.login-button');
+                const originalText = button.innerHTML;
+                button.innerHTML = 'Entrando...';
+                button.style.opacity = '0.7';
+                button.disabled = true;
+                
+                setTimeout(() => {
+                    alert(`Bem-vindo, ${nickname}! Login realizado com sucesso.`);
+                    button.innerHTML = originalText;
+                    button.style.opacity = '1';
+                    button.disabled = false;
+                    
+                    // Aqui você adicionaria a lógica real de autenticação
+                    // window.location.href = 'dashboard.html';
+                }, 1500);
+            }
+        });
+        
+        // Adiciona efeito de foco suave nos inputs
+        const inputs = document.querySelectorAll('.form-input');
+        inputs.forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.style.transform = 'translateY(-2px)';
+                this.parentElement.style.transition = 'transform 0.3s ease';
+            });
+            
+            input.addEventListener('blur', function() {
+                this.parentElement.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
 </body>
-
 </html>
