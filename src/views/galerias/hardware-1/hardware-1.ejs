@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeria de Fotos - Hardware 1</title>
+    <style>
+        /* Reset e configurações básicas */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Variáveis globais */
+        :root {
+            --bg-primary: #0F172A;
+            --color-primary: #3B82F6;
+            --color-secondary: #22D3EE;
+            --color-accent: #FACC15;
+            --text-primary: #F1F5F9;
+            --text-secondary: #94A3B8;
+            --glass-bg: rgba(15, 23, 42, 0.8);
+            --glass-border: rgba(241, 245, 249, 0.1);
+            --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+            --border-radius: 16px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Container principal */
+        .main-content {
+            background: var(--bg-primary);
+            min-height: 100vh;
+            padding: 60px 0;
+            position: relative;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header da seção */
+        .section-header {
+            text-align: center;
+            margin-bottom: 48px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .section-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.02em;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+            border-radius: 2px;
+        }
+
+        .section-text {
+            font-size: 18px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Grid de galeria */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            animation: fadeInUp 0.8s ease-out;
+            animation-delay: 0.2s;
+        }
+
+        .gallery-item {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-8px);
+            border-color: var(--color-primary);
+            box-shadow: 0 16px 40px rgba(59, 130, 246, 0.3);
+        }
+
+        .gallery-image {
+            position: relative;
+            overflow: hidden;
+            height: 250px;
+        }
+
+        .gallery-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover .gallery-image img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(15, 23, 42, 0.9), transparent);
+            opacity: 0;
+            transition: var(--transition);
+            display: flex;
+            align-items: flex-end;
+            padding: 20px;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-caption {
+            padding: 20px;
+            background: var(--glass-bg);
+        }
+
+        .gallery-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .gallery-description {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* Modal de imagem */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90vh;
+            position: relative;
+            animation: scaleIn 0.3s ease-out;
+        }
+
+        .modal-content img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 36px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--glass-bg);
+            border-radius: 50%;
+            border: 1px solid var(--glass-border);
+        }
+
+        .modal-close:hover {
+            color: var(--color-primary);
+            transform: rotate(90deg);
+        }
+
+        .modal-caption {
+            text-align: center;
+            color: white;
+            padding: 20px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        /* Animações */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .gallery-item:nth-child(1) { animation-delay: 0.1s; }
+        .gallery-item:nth-child(2) { animation-delay: 0.2s; }
+        .gallery-item:nth-child(3) { animation-delay: 0.3s; }
+        .gallery-item:nth-child(4) { animation-delay: 0.4s; }
+        .gallery-item:nth-child(5) { animation-delay: 0.5s; }
+        .gallery-item:nth-child(6) { animation-delay: 0.6s; }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .section-container {
+                padding: 0 16px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .section-text {
+                font-size: 16px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 16px;
+            }
+
+            .gallery-image {
+                height: 200px;
+            }
+
+            .modal-content {
+                max-width: 95%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-content {
+                padding: 40px 0;
+            }
+
+            .section-container {
+                padding: 0 12px;
+            }
+
+            .section-title {
+                font-size: 24px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-close {
+                top: -50px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="main-content">
+        <div class="section-container">
+            <!-- Header da seção -->
+            <div class="section-header">
+                <h1 class="section-title">Galeria Hardware 1</h1>
+                <p class="section-text">
+                    Momentos especiais capturados durante nossas atividades e eventos com as crianças
+                </p>
+            </div>
+
+            <!-- Grid de fotos -->
+            <div class="gallery-grid">
+                <div class="gallery-item" onclick="openModal(this)">
+                    <div class="gallery-image">
+                        <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=600&h=400&fit=crop" 
+                             alt="Atividade em grupo">
+                        <div class="gallery-overlay"></div>
+                    </div>
+                    <div class="gallery-caption">
+                        <h3 class="gallery-title">Atividades em Grupo</h3>
+                        <p class="gallery-description">Crianças participando de dinâmicas educativas</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" onclick="openModal(this)">
+                    <div class="gallery-image">
+                        <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=600&h=400&fit=crop" 
+                             alt="Tecnologia e aprendizado">
+                        <div class="gallery-overlay"></div>
+                    </div>
+                    <div class="gallery-caption">
+                        <h3 class="gallery-title">Tecnologia e Aprendizado</h3>
+                        <p class="gallery-description">Descobrindo o mundo digital de forma segura</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" onclick="openModal(this)">
+                    <div class="gallery-image">
+                        <img src="https://images.unsplash.com/photo-1497486751825-1233686d5d80?w=600&h=400&fit=crop" 
+                             alt="Momentos criativos">
+                        <div class="gallery-overlay"></div>
+                    </div>
+                    <div class="gallery-caption">
+                        <h3 class="gallery-title">Momentos Criativos</h3>
+                        <p class="gallery-description">Expressão artística e desenvolvimento</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" onclick="openModal(this)">
+                    <div class="gallery-image">
+                        <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?w=600&h=400&fit=crop" 
+                             alt="Aprendizado colaborativo">
+                        <div class="gallery-overlay"></div>
+                    </div>
+                    <div class="gallery-caption">
+                        <h3 class="gallery-title">Aprendizado Colaborativo</h3>
+                        <p class="gallery-description">Trabalhando juntos para crescer</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" onclick="openModal(this)">
+                    <div class="gallery-image">
+                        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&h=400&fit=crop" 
+                             alt="Diversão e educação">
+                        <div class="gallery-overlay"></div>
+                    </div>
+                    <div class="gallery-caption">
+                        <h3 class="gallery-title">Diversão e Educação</h3>
+                        <p class="gallery-description">Aprender brincando é mais divertido</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" onclick="openModal(this)">
+                    <div class="gallery-image">
+                        <img src="https://images.unsplash.com/photo-1472162072942-cd5147eb3902?w=600&h=400&fit=crop" 
+                             alt="Conexão com a natureza">
+                        <div class="gallery-overlay"></div>
+                    </div>
+                    <div class="gallery-caption">
+                        <h3 class="gallery-title">Conexão com a Natureza</h3>
+                        <p class="gallery-description">Explorando o mundo ao ar livre</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal para visualizar imagem ampliada -->
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+            <img id="modalImage" src="" alt="">
+            <div class="modal-caption" id="modalCaption"></div>
+        </div>
+    </div>
+
+    <script>
+        function openModal(element) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            const modalCaption = document.getElementById('modalCaption');
+            
+            const img = element.querySelector('img');
+            const title = element.querySelector('.gallery-title').textContent;
+            const description = element.querySelector('.gallery-description').textContent;
+            
+            modal.classList.add('active');
+            modalImg.src = img.src;
+            modalImg.alt = img.alt;
+            modalCaption.textContent = `${title} - ${description}`;
+            
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Fechar modal com tecla ESC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>

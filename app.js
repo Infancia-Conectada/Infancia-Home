@@ -30,8 +30,8 @@ app.use((req, res) => {
 
 // Inicializar servidor
 app.listen(3001, () => {
-    console.log(`Servidor rodando na porta 3000`);
-    console.log(`Acesse: http://localhost:3000`);
+    console.log(`Servidor rodando na porta 3001`);
+    console.log(`Acesse: http://localhost:3001`);
 });
 
 module.exports = app;

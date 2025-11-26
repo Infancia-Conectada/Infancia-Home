@@ -23,7 +23,7 @@ router.get('/login-instituicao', function(rec, res){
 });
 
 router.get('/projetos', function(rec, res){
-    res.render("projetos")
+    res.render("galerias/projetos")
 });
 
 router.get('/politica-privacidade', function(rec, res){
@@ -37,6 +37,23 @@ router.get('/login-adm', function(rec, res){
 
 router.get('/dashboard-adm', function(rec, res){
     res.render("adm/dashboard-adm")
+});
+
+router.get('/icomon', function(rec, res){
+    res.render("icomon")
+});
+
+router.get('/quiz-conectado', function(rec, res){
+    res.render("quiz-conectado")
+});
+
+//galeria//
+router.get('/g-icomon', function(rec, res){
+    res.render("galerias/g-icomon/g-icomon")
+});
+
+router.get('/g-quiz-conectado', function(rec, res){
+    res.render("galerias/g-quiz-conectado/g-quiz-conectado")
 });
 
 

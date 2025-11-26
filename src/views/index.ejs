@@ -10,9 +10,8 @@
 </head>
 
 <body>
-    <header class="header">
-        <!-- Header aqui!!!!-->
-    </header>
+    <!-- Header Importado -->
+    <%- include('h&f/header-infancia') %>
 
     <main class="main-content">
         <!-- Banner Section -->
@@ -77,13 +76,12 @@
                 <div class="projects-grid">
                     <article class="project-card">
                         <figure class="project-image">
-                            <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&h=300&fit=crop"
-                                alt="Projeto Educação Digital" />
+                            <img src="images/logo-jogointerativo.jpg" />
                         </figure>
                         <div class="project-content">
-                            <h3 class="project-title">Jogo Interativo</h3>
+                            <h3 class="project-title">Quiz Conectado</h3>
                             <p class="project-description">
-                                Mergulhe na diversão do nosso Jogo Interativo! Aprenda jogando, explore o mundo digital
+                                Mergulhe na diversão do nosso Quiz Conectado! Aprenda jogando, explore o mundo digital
                                 e
                                 descubra o poder de desenvolver brincando!
                             </p>
@@ -99,13 +97,13 @@
 
                     <article class="project-card">
                         <figure class="project-image">
-                            <img src="https://images.unsplash.com/photo-1576267423445-b2e0074d68a4?w=400&h=300&fit=crop"
+                            <img src="images/logo-icomon.png"
                                 alt="Projeto Arte e Cultura" />
                         </figure>
                         <div class="project-content">
                             <h3 class="project-title">Icomon</h3>
                             <p class="project-description">
-                                Venha se aventurar em nosso jogo Interativo! Se divirta com uma historia empolgante
+                                Venha se aventurar no mundo de Icomon! Se divirta com uma historia empolgante
                                 cheia de desafios e surpresas!
                             </p>
                             <a href="#projeto2" class="project-link">
@@ -121,7 +119,7 @@
                     <article class="project-card">
                         <figure class="project-image" id="conheca">
                             <img src="https://thumbs.dreamstime.com/b/ponto-de-interroga%C3%A7%C3%A3o-22537418.jpg"
-                                alt="Projeto Esporte e Saúde" />
+                                alt="Projeto2" />
                         </figure>
                         <div class="project-content">
                             <h3 class="project-title">Mais Projetos</h3>
@@ -142,7 +140,6 @@
             </div>
         </section>
 
-
         <!-- Doações Section -->
         <section class="content-section" id="doacoes">
             <div class="section-container">
@@ -157,7 +154,6 @@
                                 futuro de muitas crianças. Com o poder da tecnologia e do aprendizado, juntos podemos
                                 transformar vidas e criar novas oportunidades de crescimento e esperança.
                             </p>
-
                         </div>
                     </div>
 
@@ -184,12 +180,10 @@
         </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="footer" id="contato">
-        <!-- Footer aqui!!!!-->
-    </footer>
-    <script src="js/script-index.js"></script>
+    <!-- Footer Importado -->
+    <%- include('h&f/footer-infancia') %>
 
+    <script src="js/script-index.js"></script>
 </body>
 
 </html>
