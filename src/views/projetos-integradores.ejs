@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mural de Projetos • Infância Conectada</title>
+
+    <link rel="stylesheet" href="css/styles-index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Efeitos extras apenas para o mural */
+        .mural-header {
+            text-align: center;
+            margin-bottom: 60px;
+            animation: fadeInUp 0.7s ease-out;
+        }
+
+        .mural-title {
+            font-size: 42px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.01em;
+        }
+
+        .mural-subtitle {
+            margin-top: 12px;
+            font-size: 18px;
+            color: var(--text-secondary);
+        }
+
+        /* brilho suave nos cards */
+        .project-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg,
+                    rgba(255, 255, 255, 0.05),
+                    rgba(255, 255, 255, 0));
+            opacity: 0;
+            transition: 0.4s ease;
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        /* efeito holográfico na borda */
+        .project-card:hover {
+            border-color: var(--color-secondary);
+            box-shadow: 0 16px 40px rgba(34, 211, 238, 0.25);
+        }
+
+        /* animação ao surgir */
+        .project-card {
+            animation: fadeInUp 0.6s ease-out;
+        }
+    </style>
+</head>
+
+<body>
+    <%- include('h&f/header-infancia') %>
+        <main class="main-content">
+            <section class="content-section">
+                <div class="section-container">
+
+                    <header class="mural-header">
+                        <h1 class="mural-title">Mural de Projetos</h1>
+                        <p class="mural-subtitle">
+                            Conheça os projetos que fazem parte do ecossistema Infância Conectada
+                        </p>
+                    </header>
+
+                    <div class="projects-grid">
+
+                        <!-- CARD 1 -->
+                       <a href="quiz-conectado"> <article class="project-card">
+                            <figure class="project-image">
+                                <img src="images/logo-jogointerativo.jpg" alt="Quiz Conectado">
+                            </figure>
+                            <div class="project-content">
+                                <h3 class="project-title">Quiz Conectado</h3>
+                                <p class="project-description">
+                                    Um jogo educativo que transforma conhecimento em diversão. Explore desafios, aprenda
+                                    brincando e mergulhe no mundo digital.
+                                </p>
+                                
+                                    <span>Acessar projeto</span>
+                                    <svg width="16" height="16" viewBox="0 0 16 16">
+                                        <path
+                                            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+                                    </svg>
+                                
+                            </div>
+                        </article></a>
+
+                        <!-- CARD 2 -->
+                        <a href="/icomon"> <article class="project-card">
+                            <figure class="project-image">
+                                <img src="images/logo-icomon.png" alt="Icomon">
+                            </figure>
+                            <div class="project-content">
+                                <h3 class="project-title">Icomon</h3>
+                                <p class="project-description">
+                                    Uma aventura digital cheia de personagens e desafios. Muita diversão te espera nesse novo mundo!
+                                </p>
+                                
+                                    <span>Acessar projeto</span>
+                                    <svg width="16" height="16" viewBox="0 0 16 16">
+                                        <path
+                                            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+                                    </svg>
+                                
+                            </div>
+                        </article> </a>
+
+                        <!-- CARD 3 -->
+                        <a href="https://wa.me/5516996024388?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20como%20me%20tornar%20um%20parceiro%20do%20Infância%20Conectada."
+                            target="_blank" rel="noopener noreferrer">
+                            <article class="project-card">
+                                <figure class="project-image">
+                                    <img src="https://thumbs.dreamstime.com/b/ponto-de-interroga%C3%A7%C3%A3o-22537418.jpg"
+                                        alt="Projetos futuros">
+                                </figure>
+                                <div class="project-content">
+                                    <h3 class="project-title">Novos Projetos</h3>
+                                    <p class="project-description">
+                                        Coloque seu projeto aqui! Estamos sempre em busca de novas ideias e iniciativas
+                                        para
+                                        enriquecer nosso ecossistema.
+                                    </p>
+                                    
+                                        <span>Entre em contato</span>
+                                        <svg width="16" height="16" viewBox="0 0 16 16">
+                                            <path
+                                                d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+                                        </svg>
+                                    
+                                </div>
+                            </article></a>
+
+                    </div>
+                </div>
+            </section>
+        </main>
+        <%- include('h&f/footer-infancia') %>
+</body>
+
+</html>

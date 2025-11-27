@@ -1,11 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz Conectado</title>
+
+    <!-- Estilos básicos -->
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background: #000;
+            /* Não aparecerá devido ao iframe */
+            overflow: hidden;
+        }
+
+        #frame-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+    </style>
 </head>
+
 <body>
-    Quiz Conectado
+    <!-- Áudio de fundo que continua tocando -->
+    <audio id="bgm" src="sounds/gamemusic.mp3" autoplay loop playsinline></audio>
+
+    <!-- Container do iframe -->
+    <div id="frame-container">
+        <iframe src="https://rodrigodev25.github.io/Page-CursoEmVideo-M3/" loading="lazy"
+            allow="fullscreen; autoplay; clipboard-read; clipboard-write; encrypted-media; picture-in-picture;"
+            referrerpolicy="no-referrer"></iframe>
+    </div>
+
+    <script>
+        // Garantir que o áudio permaneça tocando mesmo após interações
+        document.addEventListener('click', () => {
+            const bgm = document.getElementById('bgm');
+            bgm.volume = 0.3;
+            if (bgm.paused) bgm.play();
+        });
+
+        // Melhoria de compatibilidade para iOS e navegadores com restrições
+        document.addEventListener('touchstart', () => {
+            const bgm = document.getElementById('bgm');
+            if (bgm.paused) bgm.play();
+        });
+    </script>
 </body>
+
 </html>

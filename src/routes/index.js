@@ -28,6 +28,10 @@ router.get('/politica-privacidade', function(rec, res){
 
 //Projetos//
 
+router.get('/projetos-integradores', function(rec, res){
+    res.render("projetos-integradores")
+});
+
 router.get('/icomon', function(rec, res){
     res.render("icomon")
 });
