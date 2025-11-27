@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeria - Infância Conectada</title>
+    <link rel="stylesheet" href="css/styles-galerias.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <%- include('../h&f/header-infancia') %>
+
+        <!-- Conteúdo da Galeria -->
+        <main class="gallery-main">
+            <div class="gallery-container">
+                <!-- Hero Section -->
+                <section class="gallery-hero">
+                    <div class="hero-content">
+                        <div class="hero-badge">
+                            <span class="badge-dot"></span>
+                            <span>Projetos Realizados</span>
+                        </div>
+                        <h1 class="hero-title">Galeria de Projetos Integradores<br><span class="gradient-text">Infância
+                                Conectada</span></h1>
+                        <p class="hero-subtitle">Momentos que transformam vidas através da tecnologia e educação</p>
+                    </div>
+
+                    <!-- Estatísticas -->
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"
+                                    viewBox="0 0 24 24">
+                                    <path
+                                        d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                                </svg>
+                            </div>
+                            <div class="stat-info">
+                                <span class="stat-number">6</span>
+                                <span class="stat-label">Projetos</span>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"
+                                    viewBox="0 0 24 24">
+                                    <path
+                                        d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                </svg>
+                            </div>
+                            <div class="stat-info">
+                                <span class="stat-number">122+</span>
+                                <span class="stat-label">Fotos</span>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"
+                                    viewBox="0 0 24 24">
+                                    <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                            <div class="stat-info">
+                                <span class="stat-number">2</span>
+                                <span class="stat-label">Anos</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Filtros -->
+                <section class="filters-section">
+                    <div class="filters-container">
+                        <button class="filter-btn active" data-filter="all">
+                            <span>Todos</span>
+                            <span class="filter-count">6</span>
+                        </button>
+                        <button class="filter-btn" data-filter="hardware">
+                            <span>TI - Hardware</span>
+                            <span class="filter-count">2</span>
+                        </button>
+                        <button class="filter-btn" data-filter="redes">
+                            <span>TI - Redes</span>
+                            <span class="filter-count">1</span>
+                        </button>
+                        <button class="filter-btn" data-filter="software">
+                            <span>TI - Software</span>
+                            <span class="filter-count">3</span>
+                        </button>
+                    </div>
+                </section>
+
+                <!-- Grid de Álbuns -->
+                <section class="albums-section">
+                    <div class="albums-grid" id="albumsGrid">
+                        <!-- Álbum 1 - Hardware -->
+                        <article class="album-card" data-category="hardware" data-album="1">
+                            <div class="album-image" style="background-image: url('images/galeria/hardware1.png');">
+                                <div class="image-overlay"></div>
+                                <div class="album-badge">
+                                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M4 16s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H4zm4-5.95a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" />
+                                    </svg>
+                                    <span>24 fotos</span>
+                                </div>
+                            </div>
+                            <div class="album-info">
+                                <div class="album-header">
+                                    <span class="album-category">Hardware</span>
+                                    <span class="album-date">Infância Conectada - Julho/2024</span>
+                                </div>
+                                <h3 class="album-title">Projeto Integrador: Hardware (1)</h3>
+                                <p class="album-description">Montagem de uma sala de informática, criando um espaço com
+                                    tecnologia e carinho para as crianças estudarem, se divertirem e sonharem com o
+                                    futuro.</p>
+                                <a href="#album1" class="album-link">
+                                    <span>Ver álbum</span>
+                                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </article>
+
+                        <!-- Álbum 2 - Redes -->
+                        <article class="album-card" data-category="redes" data-album="2">
+                            <div class="album-image" style="background-image: url('images/galeria/redes1.png');">
+                                <div class="image-overlay"></div>
+                                <div class="album-badge">
+                                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M4 16s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H4zm4-5.95a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" />
+                                    </svg>
+                                    <span>18 fotos</span>
+                                </div>
+                            </div>
+                            <div class="album-info">
+                                <div class="album-header">
+                                    <span class="album-category">Redes</span>
+                                    <span class="album-date">Infância Conectada - Dezembro/2024</span>
+                                </div>
+                                <h3 class="album-title">Projeto Integrador: Redes (1)</h3>
+                                <p class="album-description">Instalação e organização dos cabos de rede, garantindo
+                                    conexão estável e segura para as crianças acessarem a internet com qualidade na sala
+                                    de informática.</p>
+                                <a href="#album2" class="album-link">
+                                    <span>Ver álbum</span>
+                                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </article>
+
+                        <!-- Álbum 3 - Hardware -->
+                        <article class="album-card" data-category="hardware" data-album="3">
+                            <div class="album-image" style="background-image: url('images/galeria/hardware2.png');">
+                                <div class="image-overlay"></div>
+                                <div class="album-badge">
+                                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M4 16s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H4zm4-5.95a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" />
+                                    </svg>
+                                    <span>1 Vídeo</span>
+                                </div>
+                            </div>
+                            <div class="album-info">
+                                <div class="album-header">
+                                    <span class="album-category">Hardware</span>
+                                    <span class="album-date">Turma TI Hardware - Junho/2025</span>
+                                </div>
+                                <h3 class="album-title">Projeto Integrador: Hardware (2)</h3>
+                                <p class="album-description">Realização da manutenção dos computadores da sala de
+                                    informática, garantindo que todos continuem funcionando perfeitamente para o
+                                    aprendizado e diversão das crianças.</p>
+                                <a href="#album3" class="album-link">
+                                    <span>Ver álbum</span>
+                                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </article>
+
+                        <!-- Álbum 4 - Software -->
+                        <article class="album-card" data-category="software" data-album="4">
+                            <div class="album-image" style="background-image: url('images/galeria/software1');">
+                                <div class="image-overlay"></div>
+                                <div class="album-badge">
+                                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M4 16s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H4zm4-5.95a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" />
+                                    </svg>
+                                    <span>27 fotos</span>
+                                </div>
+                            </div>
+                            <div class="album-info">
+                                <div class="album-header">
+                                    <span class="album-category">Software</span>
+                                    <span class="album-date">Infância Conectada - Novembro/2025</span>
+                                </div>
+                                <h3 class="album-title">Projeto Integrador: Site</h3>
+                                <p class="album-description">Criação da homepage do projeto — um hub que reúne e divulga
+                                    iniciativas voltadas a crianças em situação de vulnerabilidade.</p>
+                                <a href="#album4" class="album-link">
+                                    <span>Ver álbum</span>
+                                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </article>
+
+                        <!-- Álbum 5 - Software -->
+                        <article class="album-card" data-category="software" data-album="5">
+                            <div class="album-image" style="background-image: url('images/galeria/software2');">
+                                <div class="album-badge">
+                                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M4 16s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H4zm4-5.95a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" />
+                                    </svg>
+                                    <span>21 fotos</span>
+                                </div>
+                            </div>
+                            <div class="album-info">
+                                <div class="album-header">
+                                    <span class="album-category">Software</span>
+                                    <span class="album-date">Infância Conectada - Novembro/2025</span>
+                                </div>
+                                <h3 class="album-title">Projeto Integrador: Icomon</h3>
+                                <p class="album-description">Desenvolvimento de um jogo de cartas com monstros, criado
+                                    para estimular a diversão, estratégia e imaginação das crianças.</p>
+                                <a href="#album5" class="album-link">
+                                    <span>Ver álbum</span>
+                                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </article>
+
+                        <!-- Álbum 6 - Software -->
+                        <article class="album-card" data-category="software" data-album="6">
+                            <div class="album-image" style="background-image: url('images/galeria/software3');">
+                                <div class="album-badge">
+                                    <span>10 fotos</span>
+                                </div>
+                            </div>
+                            <div class="album-info">
+                                <div class="album-header">
+                                    <span class="album-category">Software</span>
+                                    <span class="album-date">Infância Conectada - Novembro/2025</span>
+                                </div>
+                                <h3 class="album-title">Projeto Integrador: Quiz Conectado</h3>
+                                <p class="album-description">Criação de um jogo educativo sobre informática, ajudando as
+                                    crianças a aprender de forma divertida sobre computadores e tecnologia.</p>
+                                <a href="#album6" class="album-link">
+                                    <span>Ver álbum</span>
+                                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <%- include('../h&f/footer-infancia') %>
+
+            <script src="js/galerias/galerias.js"></script>
+</body>
+
+</html>

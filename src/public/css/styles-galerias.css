@@ -1,0 +1,782 @@
+/* ========================================
+   INFÂNCIA CONECTADA - ESTILOS DA GALERIA
+   Design Moderno com Glassmorfismo
+   ======================================== */
+
+/* ==================== VARIÁVEIS CSS ==================== */
+:root {
+    --bg-primary: #0F172A;
+    --bg-secondary: #1E293B;
+    --color-primary: #3B82F6;
+    --color-secondary: #22D3EE;
+    --color-accent: #FACC15;
+    --text-primary: #F1F5F9;
+    --text-secondary: #94A3B8;
+    --text-tertiary: #64748B;
+    --glass-bg: rgba(15, 23, 42, 0.7);
+    --glass-border: rgba(241, 245, 249, 0.1);
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+    --border-radius: 20px;
+    --border-radius-sm: 12px;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ==================== RESET ==================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* ==================== GALERIA MAIN ==================== */
+.gallery-main {
+    min-height: 100vh;
+    padding-top: 80px;
+    background: var(--bg-primary);
+    position: relative;
+    overflow-x: hidden;
+}
+
+.gallery-main::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(34, 211, 238, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(250, 204, 21, 0.03) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.gallery-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+    z-index: 1;
+}
+
+/* ==================== HERO SECTION ==================== */
+.gallery-hero {
+    padding: 80px 0 60px;
+    text-align: center;
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto 48px;
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 100px;
+    margin-bottom: 24px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    animation: fadeInDown 0.6s ease-out;
+}
+
+.badge-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--color-primary);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+.hero-title {
+    font-size: 56px;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+    color: var(--text-primary);
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.gradient-text {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+    font-size: 18px;
+    color: var(--text-secondary);
+    font-weight: 500;
+    line-height: 1.7;
+    animation: fadeInUp 0.8s ease-out 0.2s backwards;
+}
+
+/* ==================== ESTATÍSTICAS ==================== */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.stat-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 24px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+    animation: fadeInUp 0.6s ease-out backwards;
+}
+
+.stat-card:nth-child(1) { animation-delay: 0.1s; }
+.stat-card:nth-child(2) { animation-delay: 0.2s; }
+.stat-card:nth-child(3) { animation-delay: 0.3s; }
+
+.stat-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(59, 130, 246, 0.3);
+    box-shadow: 0 12px 40px rgba(59, 130, 246, 0.15);
+}
+
+.stat-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(59, 130, 246, 0.1);
+    border-radius: var(--border-radius-sm);
+    color: var(--color-primary);
+    flex-shrink: 0;
+}
+
+.stat-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.stat-number {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* ==================== FILTROS ==================== */
+.filters-section {
+    padding: 40px 0;
+    animation: fadeInUp 0.6s ease-out 0.4s backwards;
+}
+
+.filters-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    padding: 16px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--border-radius);
+}
+
+.filter-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: transparent;
+    border: 1px solid var(--glass-border);
+    border-radius: var(--border-radius-sm);
+    color: var(--text-secondary);
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.filter-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, 
+        rgba(59, 130, 246, 0.1), 
+        rgba(34, 211, 238, 0.1));
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.filter-btn:hover {
+    border-color: var(--color-primary);
+    color: var(--text-primary);
+    transform: translateY(-2px);
+}
+
+.filter-btn:hover::before {
+    opacity: 1;
+}
+
+.filter-btn.active {
+    background: rgba(59, 130, 246, 0.15);
+    border-color: var(--color-primary);
+    color: var(--text-primary);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+}
+
+.filter-btn.active::before {
+    opacity: 1;
+}
+
+.filter-count {
+    padding: 2px 8px;
+    background: rgba(59, 130, 246, 0.2);
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.filter-btn.active .filter-count {
+    background: rgba(59, 130, 246, 0.3);
+}
+
+/* ==================== GRID DE ÁLBUNS ==================== */
+.albums-section {
+    padding-bottom: 80px;
+}
+
+.albums-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 32px;
+    animation: fadeInUp 0.8s ease-out 0.6s backwards;
+}
+
+/* ==================== CARD DE ÁLBUM ==================== */
+.album-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    overflow: hidden;
+    transition: var(--transition);
+    position: relative;
+    opacity: 0;
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.album-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, 
+        rgba(59, 130, 246, 0.05) 0%, 
+        rgba(34, 211, 238, 0.02) 100%);
+    opacity: 0;
+    transition: var(--transition);
+    pointer-events: none;
+}
+
+.album-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    border-color: rgba(59, 130, 246, 0.4);
+    box-shadow: 
+        0 20px 60px rgba(59, 130, 246, 0.2),
+        0 0 40px rgba(59, 130, 246, 0.1);
+}
+
+.album-card:hover::before {
+    opacity: 1;
+}
+
+.album-card.hidden {
+    display: none;
+}
+
+.album-card:nth-child(1) { animation-delay: 0.1s; }
+.album-card:nth-child(2) { animation-delay: 0.2s; }
+.album-card:nth-child(3) { animation-delay: 0.3s; }
+.album-card:nth-child(4) { animation-delay: 0.4s; }
+.album-card:nth-child(5) { animation-delay: 0.5s; }
+.album-card:nth-child(6) { animation-delay: 0.6s; }
+
+/* ==================== IMAGEM DO ÁLBUM ==================== */
+.album-image {
+    position: relative;
+    width: 100%;
+    height: 260px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        180deg,
+        transparent 0%,
+        rgba(15, 23, 42, 0.3) 50%,
+        rgba(15, 23, 42, 0.8) 100%
+    );
+    z-index: 1;
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.album-card:hover .image-overlay {
+    opacity: 1;
+}
+
+.album-image svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.album-card:hover .album-image svg {
+    transform: scale(1.1);
+}
+
+.album-badge {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-primary);
+    z-index: 2;
+    transition: var(--transition);
+}
+
+.album-card:hover .album-badge {
+    background: rgba(59, 130, 246, 0.2);
+    border-color: var(--color-primary);
+    transform: scale(1.05);
+}
+
+.album-badge svg {
+    width: 14px;
+    height: 14px;
+    color: var(--color-secondary);
+}
+
+/* ==================== INFORMAÇÕES DO ÁLBUM ==================== */
+.album-info {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.album-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.album-category {
+    display: inline-flex;
+    padding: 4px 12px;
+    background: rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.album-date {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-tertiary);
+}
+
+.album-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+    margin: 0;
+    transition: var(--transition);
+}
+
+.album-card:hover .album-title {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.album-description {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin: 0;
+}
+
+.album-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 20px;
+    margin-top: 8px;
+    background: rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    border-radius: var(--border-radius-sm);
+    color: var(--color-primary);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.album-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, 
+        rgba(59, 130, 246, 0.2), 
+        rgba(34, 211, 238, 0.2));
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.album-link:hover {
+    background: rgba(59, 130, 246, 0.15);
+    border-color: var(--color-primary);
+    transform: translateX(4px);
+    box-shadow: 0 4px 20px rgba(59, 130, 246, 0.2);
+}
+
+.album-link:hover::before {
+    opacity: 1;
+}
+
+.album-link span {
+    position: relative;
+    z-index: 1;
+}
+
+.album-link svg {
+    width: 16px;
+    height: 16px;
+    transition: var(--transition);
+    position: relative;
+    z-index: 1;
+}
+
+.album-link:hover svg {
+    transform: translateX(4px);
+}
+
+/* ==================== ANIMAÇÕES ==================== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.6;
+        transform: scale(1.1);
+    }
+}
+
+/* ==================== SELEÇÃO DE TEXTO ==================== */
+::selection {
+    background: rgba(59, 130, 246, 0.3);
+    color: var(--text-primary);
+}
+
+::-moz-selection {
+    background: rgba(59, 130, 246, 0.3);
+    color: var(--text-primary);
+}
+
+/* ==================== SCROLLBAR ==================== */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(59, 130, 246, 0.3);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(59, 130, 246, 0.5);
+}
+
+/* ==================== RESPONSIVIDADE ==================== */
+
+/* Desktop grande */
+@media (min-width: 1440px) {
+    .gallery-container {
+        max-width: 1400px;
+    }
+    
+    .albums-grid {
+        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    }
+}
+
+/* Tablets */
+@media (max-width: 1024px) {
+    .hero-title {
+        font-size: 48px;
+    }
+    
+    .albums-grid {
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 28px;
+    }
+}
+
+@media (max-width: 768px) {
+    .gallery-main {
+        padding-top: 70px;
+    }
+    
+    .gallery-container {
+        padding: 0 16px;
+    }
+    
+    .gallery-hero {
+        padding: 60px 0 40px;
+    }
+    
+    .hero-title {
+        font-size: 40px;
+    }
+    
+    .hero-subtitle {
+        font-size: 16px;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    
+    .filters-container {
+        padding: 12px;
+    }
+    
+    .filter-btn {
+        padding: 10px 16px;
+        font-size: 13px;
+    }
+    
+    .albums-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+    
+    .album-image {
+        height: 220px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    .gallery-main {
+        padding-top: 60px;
+    }
+    
+    .gallery-container {
+        padding: 0 12px;
+    }
+    
+    .gallery-hero {
+        padding: 40px 0 32px;
+    }
+    
+    .hero-title {
+        font-size: 32px;
+    }
+    
+    .hero-subtitle {
+        font-size: 15px;
+    }
+    
+    .hero-badge {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+    
+    .stat-card {
+        padding: 20px;
+    }
+    
+    .stat-icon {
+        width: 44px;
+        height: 44px;
+    }
+    
+    .stat-number {
+        font-size: 24px;
+    }
+    
+    .filters-container {
+        gap: 8px;
+        padding: 10px;
+    }
+    
+    .filter-btn {
+        padding: 8px 14px;
+        font-size: 12px;
+    }
+    
+    .albums-grid {
+        gap: 20px;
+    }
+    
+    .album-image {
+        height: 200px;
+    }
+    
+    .album-info {
+        padding: 20px;
+        gap: 12px;
+    }
+    
+    .album-title {
+        font-size: 20px;
+    }
+    
+    .album-description {
+        font-size: 13px;
+    }
+    
+    .album-link {
+        padding: 12px 18px;
+        font-size: 13px;
+    }
+}
+
+/* ==================== ACESSIBILIDADE ==================== */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+.filter-btn:focus,
+.album-link:focus {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+.album-card:focus-within {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* ==================== IMPRESSÃO ==================== */
+@media print {
+    .gallery-main::before,
+    .filters-section {
+        display: none;
+    }
+    
+    .album-card {
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+}

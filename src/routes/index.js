@@ -22,22 +22,11 @@ router.get('/login-instituicao', function(rec, res){
     res.render("login-instituicao")
 });
 
-router.get('/projetos', function(rec, res){
-    res.render("projetos")
-});
-
 router.get('/politica-privacidade', function(rec, res){
     res.render("privacidade")
 });
 
-//Administrativo//
-router.get('/login-adm', function(rec, res){
-    res.render("adm/login-adm")
-});
-
-router.get('/dashboard-adm', function(rec, res){
-    res.render("adm/dashboard-adm")
-});
+//Projetos//
 
 router.get('/icomon', function(rec, res){
     res.render("icomon")
@@ -47,7 +36,13 @@ router.get('/quiz-conectado', function(rec, res){
     res.render("quiz-conectado")
 });
 
-//galeria//
+//Galeria//
+
+router.get('/galeria', function(rec, res){
+    res.render("galerias/galerias")
+});
+
+
 router.get('/g-icomon', function(rec, res){
     res.render("galerias/g-icomon/g-icomon")
 });
@@ -64,6 +59,15 @@ router.get('/header', function(rec, res){
 
 router.get('/footer', function(rec, res){
     res.render("h&f/footer-infancia")
+});
+
+//Administrativo//
+router.get('/login-adm', function(rec, res){
+    res.render("adm/login-adm")
+});
+
+router.get('/dashboard-adm', function(rec, res){
+    res.render("adm/dashboard-adm")
 });
 
 module.exports = router;

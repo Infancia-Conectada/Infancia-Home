@@ -119,6 +119,10 @@ body {
     letter-spacing: 1px;
 }
 
+a {
+    text-decoration: none;
+}
+
 .contact-item span:last-child {
     font-size: 15px;
     font-weight: 500;
