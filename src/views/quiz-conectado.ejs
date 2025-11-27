@@ -40,27 +40,27 @@
     <!-- Áudio de fundo que continua tocando -->
     <audio id="bgm" src="sounds/gamemusic.mp3" autoplay loop playsinline></audio>
 
-    <!-- Container do iframe -->
-    <div id="frame-container">
-        <iframe src="https://rodrigodev25.github.io/Page-CursoEmVideo-M3/" loading="lazy"
-            allow="fullscreen; autoplay; clipboard-read; clipboard-write; encrypted-media; picture-in-picture;"
-            referrerpolicy="no-referrer"></iframe>
-    </div>
+    <%- include('h&f/header-infancia') %>
 
-    <script>
-        // Garantir que o áudio permaneça tocando mesmo após interações
-        document.addEventListener('click', () => {
-            const bgm = document.getElementById('bgm');
-            bgm.volume = 0.3;
-            if (bgm.paused) bgm.play();
-        });
+        <!-- Container do iframe -->
+        <div id="frame-container">
+            <iframe src="https://jogointerativo-production.up.railway.app/;" referrerpolicy="no-referrer"></iframe>
+        </div>
 
-        // Melhoria de compatibilidade para iOS e navegadores com restrições
-        document.addEventListener('touchstart', () => {
-            const bgm = document.getElementById('bgm');
-            if (bgm.paused) bgm.play();
-        });
-    </script>
+        <script>
+            // Garantir que o áudio permaneça tocando mesmo após interações
+            document.addEventListener('click', () => {
+                const bgm = document.getElementById('bgm');
+                bgm.volume = 0.3;
+                if (bgm.paused) bgm.play();
+            });
+
+            // Melhoria de compatibilidade para iOS e navegadores com restrições
+            document.addEventListener('touchstart', () => {
+                const bgm = document.getElementById('bgm');
+                if (bgm.paused) bgm.play();
+            });
+        </script>
 </body>
 
 </html>
